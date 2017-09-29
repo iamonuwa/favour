@@ -1,0 +1,10 @@
+<ion-spinner icon="dots" class="loadingSpinner" ng-if="$ctrl.loading"></ion-spinner>
+<div class="list card" ng-repeat="category in $ctrl.categories" ui-sref="category({categoryId: category.short_name, categoryName: category.name})">
+    <div class="item item-image categoryMenu">
+        <img class="categoryImg" ng-src="img/menu/{{category.short_name}}.jpg" alt="{{category.short_name}}" onerror="javascript:this.src='img/placeholder.jpg';">
+    </div>
+    <div class="item">
+        <b class="itemTitle">{{category.name}}</b>
+    </div>
+</div>
+

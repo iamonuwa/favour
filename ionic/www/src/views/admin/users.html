@@ -1,0 +1,28 @@
+<ion-content id="pageContentOrder">
+    <!-- loading -->
+    <ion-spinner icon="dots" class="loadingSpinner" ng-if="adminUsersCtrl.loading"></ion-spinner>
+    <!-- style borrowed from dish view -->
+    <div class="orderNote" ng-if="!adminUsersCtrl.loading">
+        <div class="dishDesc" ng-if="adminUsersCtrl.token && adminUsersCtrl.usersArr.length">{{adminUsersCtrl.usersArr.length}} registered users</div>
+        <div class="dishDesc" ng-if="adminUsersCtrl.token && !adminUsersCtrl.usersArr.length">No user yet</div>
+        <div class="dishDesc" ng-if="!adminUsersCtrl.token">Please login first</div>
+    </div>
+    <!-- dishes under this category -->
+    <!-- ng-repeat for each user as card -->
+    <div class="card menuItemList" ng-repeat="user in adminUsersCtrl.usersArr | orderBy:'-total'" ng-if="adminUsersCtrl.token">
+        <!-- user header -->
+        <div class="orderHeader orderInfo">
+            <div class="orderLeft"><b>Username: </b>{{user.name}}</div>
+            <div class="orderLeft"><b>Id: </b>{{user.id}}</div>
+            <div class="orderLeft"><b>Number of orders: </b>{{user.count}}</div>
+            <div class="orderLeft"><b>Total Sales: </b>{{user.total | currency}}</div>
+            <div class="orderLeft"><b>Registered at: </b>{{user.registerTime | date}}</div>
+            <div class="orderLeft"><b>Last order at: </b>{{user.lastOrder | date}}</div>
+        </div>
+    </div>
+    <!-- additional navigation at bottom -->
+    <div class="bottomNote" ng-if="!adminUsersCtrl.loading">
+        <p class="link" ui-sref="home">Back to main menu</p>
+    </div>
+</ion-content>
+

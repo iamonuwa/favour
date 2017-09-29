@@ -1,0 +1,32 @@
+{
+  "name": "foodOrderingApp",
+  "version": "1.0.0",
+  "description": "A food ordering app built with ionic",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamonuwa/food-ordering-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamonuwa/food-ordering-app/issues"
+  },
+  "homepage": "https://github.com/iamonuwa/food-ordering-app#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "helmet": "^3.4.0",
+    "jsonwebtoken": "^7.2.1",
+    "mongoose": "^4.7.6",
+    "mongoose-currency": "^0.2.0",
+    "passport": "^0.3.2",
+    "passport-local-mongoose": "^4.0.0",
+    "serve-favicon": "^2.3.2"
+  }
+}

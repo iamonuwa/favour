@@ -1,0 +1,71 @@
+<ion-content id="pageContentDish">
+    <!-- addition nav to return to home page -->
+    <div class="navigateBack" ui-sref="category({categoryId: dishCtrl.categoryId, categoryName: dishCtrl.categoryName})" 
+        style="color:#999; text-shadow:0px 2px 4px rgba(0, 0, 0, 0.2), 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12)">
+        <i class="ion-arrow-left-a"></i>
+    </div>
+
+    <!-- dish header -->
+    <ion-spinner icon="dots" class="loadingSpinner" ng-if="dishCtrl.loading"></ion-spinner>
+    <div class="dishHeader" ng-if="!dishCtrl.loading">
+        <h1 class="dishName">{{dishCtrl.dishInfo.name}}</h1>
+        <div class="divisionBar" ng-if="dishCtrl.dishInfo.description"></div>
+        <div class="dishDesc">{{dishCtrl.dishInfo.description}}</div>
+    </div>
+    <!-- dish selection -->
+    <div class="dishSelection">
+        <div class="item item-divider required">
+            CHOICE OF SPICE LEVEL
+        </div>
+        <!-- for demo purpose only, should be data driven -->
+        <ion-list class="spicyLevel">
+            <ion-radio ng-model="dishCtrl.spicyLevel" ng-value="'No Spicy'" ng-click="dishCtrl.btnStatus='green'">
+            	No Spicy
+        	</ion-radio>
+            <ion-radio ng-model="dishCtrl.spicyLevel" ng-value="'Mild'" ng-click="dishCtrl.btnStatus='green'">
+            	Mild
+        	</ion-radio>
+            <ion-radio ng-model="dishCtrl.spicyLevel" ng-value="'Medium'" ng-click="dishCtrl.btnStatus='green'">
+        		Medium
+    		</ion-radio>
+            <ion-radio ng-model="dishCtrl.spicyLevel" ng-value="'Spicy'" ng-click="dishCtrl.btnStatus='green'">
+            	Spicy
+        	</ion-radio>
+            <ion-radio ng-model="dishCtrl.spicyLevel" ng-value="'Extra Spicy'" ng-click="dishCtrl.btnStatus='green'">
+            	Extra Spicy
+        	</ion-radio>
+        </ion-list>
+        <div class="item item-divider">
+            ADD SIDES
+        </div>
+        <!-- for demo purpose only, should be data driven -->
+        <ion-list class="addSides">
+            <ion-checkbox ng-model="dishCtrl.sides.soup.selected" ng-click="dishCtrl.computePrice();">
+            	Soup
+            	<span class="price">+{{dishCtrl.sides.soup.price | currency}}</span>
+        	</ion-checkbox>
+            <ion-checkbox ng-model="dishCtrl.sides.salad.selected" ng-click="dishCtrl.computePrice();">
+            	Side Salad
+            	<span class="price">+{{dishCtrl.sides.salad.price | currency}}</span>
+        	</ion-checkbox>
+            <ion-checkbox ng-model="dishCtrl.sides.rice.selected" ng-click="dishCtrl.computePrice();">
+            	Extra Rice
+            	<span class="price">+{{dishCtrl.sides.rice.price | currency}}</span>
+        	</ion-checkbox>
+        </ion-list>
+        <div class="item item-divider">
+            SPECIAL INSTRUCTIONS
+        </div>
+        <ion-list class="dishNote">
+            <input type="text" ng-model="dishCtrl.dishNote" placeholder="Add a note (extra sauce, no onions, etc.)">
+        </ion-list>
+        <ion-list>
+            <div class="item item-divider" style="height:45px;"> </div>
+        </ion-list>
+    </div>
+</ion-content>
+<!-- dish footer -->
+<div class="bar bar-footer bar-dark" ng-class="dishCtrl.btnStatus" ng-click="dishCtrl.addToCart();">
+    <div class="title">ADD 1 TO CART</div>
+    <button class="button button-clear">{{dishCtrl.dishPrice | currency}}</button>
+</div>

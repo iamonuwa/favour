@@ -1,0 +1,15 @@
+<ion-spinner icon="dots" class="loadingSpinner" ng-if="$ctrl.loading"></ion-spinner>
+<ion-scroll direction="x" class="specialsWindow">
+	<div class="specialsWrapper">
+		<div class="list card specialItem" ng-repeat="item in $ctrl.specials" ui-sref="dish({categoryId: 'SP', categoryName: 'Special', dish: item.short_name})">
+		    <div class="item item-image">
+		        <img ng-src="{{$ctrl.basePath}}/images/{{item.short_name}}.jpg" alt="{{item.short_name}}">
+		    </div>
+		    <div class="item">
+		        <b class="itemTitle">{{item.name}}</b>
+		        <span class="itemPrice">{{item.price_large | currency}}</span>
+		        <p class="itemDesc">{{item.description}}</p>
+		    </div>
+		</div>
+	</div>
+</ion-scroll>

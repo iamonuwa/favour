@@ -1,0 +1,21 @@
+<ion-content id="pageContentOrder">
+    <div class="list">
+        <!-- add new category -->
+        <div class="item item-divider">
+            Add new category
+            <div class="ion-plus" ui-sref="adminUpdateCategory({categoryShortName: 'NEW'})"></div>
+        </div>
+        <!-- loading -->
+        <ion-spinner icon="dots" class="loadingSpinner" ng-if="adminCategoryCtrl.loading"></ion-spinner>
+        <!-- display all current categories -->
+        <div class="item" ng-repeat="category in adminCategoryCtrl.categories">
+            <b class="itemTitle">{{category.name}}</b>
+            <div class="updateCategory">
+                <div class="ion-compose" ui-sref="adminUpdateCategory({categoryShortName: category.short_name})"></div>
+                <div class="ion-trash-a" ng-click="adminCategoryCtrl.deleteCategory(category)"></div>
+            </div>
+        </div>
+    </div>
+
+</ion-content>
+

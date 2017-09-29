@@ -1,0 +1,39 @@
+<ion-content id="pageContentCart">
+    <!-- header pic -->
+    <div class="categoryHeader">
+        <img class="categoryImg" ng-src="img/menu/L.jpg" alt="shopping cart">
+        <div class="card categoryName">
+            <h2 class="item">Food Cart</h2>
+        </div>
+    </div>
+    <!-- dishes in cart -->
+    <div class="list menuItemList cartItemList" style="margin-bottom: 60px;">
+        <div class="item cartItem" ng-repeat="cartItem in cartCtrl.cartItems">
+            <h2>{{cartItem.dishName}}</h2>
+            <p>{{cartItem.sidesNumber}} side(s)&nbsp;&nbsp; Spicy level: {{cartItem.spicyLevel}}</p>
+            <p ng-if="cartItem.dishNote">{{cartItem.dishNote}}</p>
+            <p ng-if="!cartItem.dishNote">No additional note for this dish.</p>
+            <p>Price: {{cartItem.totalPrice | currency}}</p>
+            <div class="itemNumControl itemNumBtns">
+                <div class="itemNumBtn ion-minus-circled" ng-click="cartCtrl.minusOne($index);"></div>
+                <input type="text" class="itemNum" ng-model="cartItem.itemNumber" readonly="readonly">
+                <div class="itemNumBtn ion-plus-circled" ng-click="cartCtrl.addOne($index);"></div>
+            </div>
+            <div class="icon addControl ion-android-more-horizontal" ng-click="cartCtrl.showContrl($index);"></div>
+        </div>
+        <div class="bottomNote" ng-if="cartCtrl.cartItems.length">
+	        <p>No more dish in cart right now</p>
+	        <p class="link" ui-sref="home">Back to our main menu!</p>
+	    </div>
+    </div>
+    <!-- additional info -->
+    <div class="bottomNote" ng-if="!cartCtrl.cartItems.length">
+        <p>No dish in cart right now</p>
+        <p class="link" ui-sref="home">Check out our main menu!</p>
+    </div>
+</ion-content>
+<!-- cart footer -->
+<div class="bar bar-footer bar-positive" ng-click="cartCtrl.placeOrder();" ng-if="cartCtrl.cartItems.length">
+    <div class="title">PLACE ORDER!</div>
+    <button class="button button-clear">{{cartCtrl.orderTotal | currency}}</button>
+</div>

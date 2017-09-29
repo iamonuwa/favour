@@ -1,0 +1,19 @@
+<ion-content id="pageContentOrder">
+    <div class="list">
+        <!-- add new menu item -->
+        <div class="item item-divider">
+            Add new menu item
+            <div class="ion-plus" ui-sref="adminUpdateMenuItem({menuItemShortName: 'NEW'})"></div>
+        </div>
+        <!-- loading -->
+        <ion-spinner icon="dots" class="loadingSpinner" ng-if="adminMenuItemCtrl.loading"></ion-spinner>
+        <!-- display all current categories -->
+        <div class="item" ng-repeat="menuItem in adminMenuItemCtrl.menuItems">
+            <span class="itemTitle ">{{menuItem.name}}</span>
+            <div class="updateCategory">
+                <div class="ion-compose" ui-sref="adminUpdateMenuItem({menuItemShortName: menuItem.short_name})"></div>
+                <div class="ion-trash-a" ng-click="adminMenuItemCtrl.deleteItem(menuItem)"></div>
+            </div>
+        </div>
+    </div>
+</ion-content>

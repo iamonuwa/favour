@@ -1,0 +1,28 @@
+<ion-content>
+    <div class="list">
+        <div class="item" style="text-align:center; font-weight:bold;" >
+            {{updateCategoryCtrl.type}} Category
+        </div>
+        <div class="item item-image categoryMenu" ng-if="!updateCategoryCtrl.createNew">
+            <img class="categoryImg" ng-src="img/menu/{{updateCategoryCtrl.categoryInfo.short_name}}.jpg" alt="{{updateCategoryCtrl.categoryInfo.short_name}}">
+        </div>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Category Name: </b></span>
+            <input type="text" ng-model="updateCategoryCtrl.categoryInfo.name">
+        </label>
+         <label class="item item-input item-stacked-label" ng-if="updateCategoryCtrl.createNew">
+            <span class="input-label"><b>Category Short Name: </b></span>
+            <input type="text" ng-model="updateCategoryCtrl.categoryInfo.short_name">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Special instruction: </b></span>
+            <input type="text" placeholder="No instruction for this category" ng-model="updateCategoryCtrl.categoryInfo.special_instructions">
+        </label>
+    </div>
+    <button class="button button-block button-positive" style="margin:0 auto; width:92%;" ng-click="updateCategoryCtrl.updateCategory()">
+        {{updateCategoryCtrl.type}} Category
+    </button>
+    <div class="bottomNote">
+        <p class="link" ui-sref="adminCategory">Back to category list</p>
+    </div>
+</ion-content>
