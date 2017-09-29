@@ -1,0 +1,23 @@
+<ion-content id="pageContentOrder">
+    <!-- loading -->
+    <ion-spinner icon="dots" class="loadingSpinner" ng-if="adminSalesCtrl.loading"></ion-spinner>
+    <!-- style borrowed from dish view -->
+    <div class="orderNote" ng-if="!adminSalesCtrl.loading">
+        <div class="dishDesc" ng-if="adminSalesCtrl.token && adminSalesCtrl.orders.length">{{adminSalesCtrl.orders.length}} completed orders</div>
+        <div class="dishDesc" ng-if="adminSalesCtrl.token && !adminSalesCtrl.orders.length">No completed orders yet</div>
+        <div class="dishDesc" ng-if="!adminSalesCtrl.token">Please login first</div>
+    </div>
+    <!-- dishes under this category -->
+    <!-- ng-repeat for each order as card -->
+    <section class="card menuItemList salesItem" ng-repeat="order in adminSalesCtrl.orders" ng-if="adminSalesCtrl.token">
+        <!-- order header -->
+        <div class="orderHeader orderInfo">
+            <div class="orderTime">Completed at {{order.updatedAt | date:"MM/dd/yyyy h:mma"}}</div>
+            <div class="orderStatus">{{order.total | currency}}</div>
+        </div>
+    </section>
+</ion-content>
+<!-- sales footer -->
+<div class="bar bar-footer bar-positive" ng-if="adminSalesCtrl.token && adminSalesCtrl.orders.length">
+    <div class="title">Total Sales Revenue: {{adminSalesCtrl.totalSales | currency}}</div>
+</div>

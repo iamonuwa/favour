@@ -1,0 +1,37 @@
+<ion-content id="pageContentCate">
+	<!-- addition nav to return to home page -->
+	<div class="navigateBack" ui-sref="home">
+		<i class="ion-arrow-left-a"></i>
+	</div>
+
+	<!-- header pic -->
+	<div class="categoryHeader">
+		<img class="categoryImg" ng-src="img/menu/{{menuItemsCtrl.category.categoryId}}.jpg" alt="{{menuItemsCtrl.category.categoryId}}">
+		<div class="card categoryName">
+		  <h2 class="item">{{menuItemsCtrl.category.categoryName}}</h2>
+		</div>
+	</div>
+	<!-- name and instructions for this category -->
+	<ion-spinner icon="dots" class="loadingSpinner" ng-if="menuItemsCtrl.loading"></ion-spinner>
+	<div class="specialInstr" ng-if="menuItemsCtrl.categoryInfo.special_instructions">{{menuItemsCtrl.categoryInfo.special_instructions}}</div>
+
+	<!-- dishes under this category -->
+	<div class="list menuItemList">
+	    <div class="item item-thumbnail-right"  ng-repeat="menuItem in menuItemsCtrl.menuItems" ui-sref="dish({categoryId: menuItemsCtrl.category.categoryId, categoryName:menuItemsCtrl.category.categoryName, dish:menuItem.short_name})">
+	      <div class="itemImg">
+	      	<img ng-src="{{menuItemsCtrl.basePath}}/images/{{menuItem.short_name}}.jpg" alt="{{menuItem.name}}"> 
+	      	<div class="itemShortName">{{menuItem.short_name}}</div>
+	      </div>
+	      <h2>{{menuItem.name}}</h2>
+	      <p class="menuItemDesc">{{menuItem.description}}</p>
+	      <p>{{menuItem.price_large | currency}}</p>
+	    </div>
+	</div>
+
+	<!-- additional navigation at bottom -->
+	<div class="bottomNote" ng-if="!menuItemsCtrl.loading">
+		<p>No more dishes in this category</p>
+		<p class="link" ui-sref="home">Back to our main menu</p>
+	</div>
+</ion-content>
+

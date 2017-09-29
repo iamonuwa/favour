@@ -1,0 +1,49 @@
+<div class="modal">
+    <!-- modal header bar  -->
+    <ion-header-bar class="bar-secondary">
+        <h1 class="title" ng-if="showLogin">App Login</h1>
+        <h1 class="title" ng-if="!showLogin">App Sign Up</h1>
+        <button class="button button-clear button-positive ion-android-close" ng-click="closeLoginModal()" style="padding-right:10px;">
+        </button>
+    </ion-header-bar>
+    <!-- modal content area -->
+    <ion-content>
+        <!-- login -->
+        <form ng-submit="login(userInfo)" ng-if="showLogin">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="userInfo.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="userInfo.password">
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">Login</button>
+            </div>
+            <p style="margin-left:15px;">Click here to <a href="" ng-click="toggleForm()">Sign up</a>.</p>
+        </form>
+        <!-- signup -->
+        <form ng-submit="signup(userInfo)" ng-if="!showLogin">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" ng-model="userInfo.username">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="userInfo.password">
+                </label><label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password" ng-model="userInfo.password">
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">Sign up</button>
+            </div>
+            <p style="margin-left:15px;">Click here to <a href="" ng-click="toggleForm()">Login</a>.</p>
+        </form>
+    </ion-content>
+</div>

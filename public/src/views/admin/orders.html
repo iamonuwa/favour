@@ -1,0 +1,40 @@
+<ion-content id="pageContentOrder">
+    <!-- loading -->
+    <ion-spinner icon="dots" class="loadingSpinner" ng-if="adminOrderCtrl.loading"></ion-spinner>
+    <!-- style borrowed from dish view -->
+    <div class="orderNote" ng-if="!adminOrderCtrl.loading">
+        <div class="dishDesc" ng-if="adminOrderCtrl.token && adminOrderCtrl.orders.length">{{adminOrderCtrl.orders.length}} incoming orders</div>
+        <div class="dishDesc" ng-if="adminOrderCtrl.token && !adminOrderCtrl.orders.length">No incoming orders now</div>
+        <div class="dishDesc" ng-if="!adminOrderCtrl.token">Please login first</div>
+    </div>
+    <!-- dishes under this category -->
+    <!-- ng-repeat for each order as card -->
+    <div class="card menuItemList" ng-repeat="order in adminOrderCtrl.orders" ng-if="adminOrderCtrl.token">
+        <!-- order header -->
+        <div class="orderHeader orderInfo">
+            <div class="orderTime">Placed at {{order.createdAt | date:"MM/dd/yyyy h:mma"}}</div>
+            <div class="orderStatus">{{order.status | uppercase}}</div>
+        </div>
+        <!-- ng-repeat for each item in the order as list in the card -->
+        <div class="item item-thumbnail-right" ng-repeat="orderItem in order.contents">
+            <div class="itemImg">
+                <img ng-src="{{adminOrderCtrl.basePath}}/images/{{orderItem.dishShortName}}.jpg" alt="{{orderItem.dishName}}">
+                <div class="itemShortName">{{orderItem.dishShortName}}</div>
+            </div>
+            <h2>{{orderItem.dishName}}</h2>
+            <p>{{orderItem.sidesNumber}} side(s)&nbsp;&nbsp; Spicy level: {{orderItem.spicyLevel}}</p>
+            <p ng-if="orderItem.dishNote">{{orderItem.dishNote}}</p>
+            <p ng-if="!orderItem.dishNote">No additional note for this dish.</p>
+            <p>Quantity: {{orderItem.itemNumber}}&nbsp;&nbsp; Subtotal: {{orderItem.totalPrice | currency}}</p>
+        </div>
+        <!-- order footer -->
+        <div class="orderInfo">
+            <button class="orderFooter button button-small button-positive" ng-click="adminOrderCtrl.orderServed(order)" ng-if="order.status == 'placed'">Dish Served</button>
+            <div class="orderFooter orderTotal">Total: {{order.total | currency}}</div>
+        </div>
+    </div>
+    <!-- additional navigation at bottom -->
+    <div class="bottomNote" ng-if="!adminOrderCtrl.loading">
+        <p class="link" ui-sref="home">Back to main menu</p>
+    </div>
+</ion-content>

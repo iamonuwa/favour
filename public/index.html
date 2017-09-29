@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Krispy Foods</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src * 'unsafe-eval'; connect-src * 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src *"> -->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/route.js"></script>
+    <script src="js/service.js"></script>
+    <script src="cordova.js"></script>
+
+</head>
+
+<body ng-app="menuApp" ng-controller="menuController">
+  <ion-side-menus>
+
+    <!-- Center content -->
+    <ion-side-menu-content>
+      <!-- header bar -->
+      <ion-header-bar class="bar-light">
+        <button class="button button-icon" ng-click="toggleSidebar()">
+          <i class="icon ion-navicon"></i>
+        </button>
+        <h1 class="title">Krispy Foods</h1>
+        <button class="button button-icon" ng-click="openGit()">
+          <i class="icon ion-social-github"></i>
+        </button>
+      </ion-header-bar>
+       <ui-view>
+        <!-- entry point of all views -->
+      </ui-view>
+    </ion-side-menu-content>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left">
+      <ion-header-bar class="bar-dark">
+        <h1 class="title" ng-if="!loginStatus">Welcome</h1>
+        <!-- when the user has login -->
+        <h1 class="title" ng-if="loginStatus">Welcome, {{username}}!</h1>
+      </ion-header-bar>
+       <ion-content scroll="false">
+         <ion-list>
+          <ion-item class="item item-divider" ng-if="!admin">
+            User
+          </ion-item>
+          <ion-item class="item item-divider" ng-if="admin">
+            Admin panel
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-click="openLoginModal()" ng-if="!loginStatus">
+            <i class="icon ion-ios-person"></i>
+            Login / join
+          </ion-item>
+          <!-- when ordinary user has login -->
+          <ion-item class="item item-icon-left" ui-sref="orders" ng-click="closeSidebar()" ng-if="loginStatus && !admin">
+            <i class="icon ion-ios-person"></i>
+            My orders
+          </ion-item>
+          <ion-item class="item item-icon-left" ui-sref="cart" ng-click="closeSidebar()" ng-if="!admin">
+            <i class="icon ion-ios-cart"></i>
+            My cart
+            <span class="badge badge-positive" style="right:20px">{{itemsInCart}}</span>
+          </ion-item>
+          <!-- when admin has logged in -->
+          <ion-item class="item item-icon-left" ng-if="loginStatus && admin" ui-sref="adminCategory" ng-click="closeSidebar()">
+            <i class="icon ion-ios-albums" style="font-size: 1.7rem;"></i>
+            Category
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="loginStatus && admin" ui-sref="adminMenuItem" ng-click="closeSidebar()">
+            <i class="icon ion-ios-pricetags" style="font-size: 1.8rem;"></i>
+            Menu Item
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="loginStatus && admin" ui-sref="adminOrder
+          " ng-click="closeSidebar()">
+            <i class="icon ion-ios-list" style="font-size: 1.8rem;"></i>
+            Incoming Orders
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="loginStatus && admin" ui-sref="adminSales
+          " ng-click="closeSidebar()">
+            <i class="icon ion-arrow-graph-up-right"></i>
+            Sales Revenue
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="loginStatus && admin" ui-sref="adminUser" ng-click="closeSidebar()">
+            <i class="icon ion-ios-people"></i>
+            Users
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-click="logout()" ng-if="loginStatus">
+            <i class="icon ion-ios-glasses"></i>
+            Logout
+          </ion-item>
+          <ion-item class="item item-divider">
+            Navigation
+          </ion-item>
+          <ion-item class="item item-icon-left" ui-sref="home" ng-click="closeSidebar()">
+            <i class="icon ion-ios-home"></i>
+            Home page
+          </ion-item>
+          <ion-item class="item item-divider" ng-if="!admin">
+            Additional info
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="!admin" ng-click="closeSidebar()" ui-sref="about">
+            <i class="icon ion-ios-book" style="font-size: 1.8rem;"></i>
+            About this app
+          </ion-item>
+          <ion-item class="item item-icon-left" ng-if="!admin" ng-click="openGit()">
+            <i class="icon ion-social-octocat" style="font-size: 1.8rem;"></i>
+            Github
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-side-menu>
+
+  </ion-side-menus>
+  
+</body>
+</html>
+

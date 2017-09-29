@@ -1,0 +1,36 @@
+<ion-content>
+    <div class="list">
+        <div class="item" style="text-align:center; font-weight:bold;" >
+            {{updateMenuItemCtrl.type}} Menu Item
+        </div>
+        <div class="item item-image categoryMenu" ng-if="!updateMenuItemCtrl.createNew">
+            <img class="categoryImg" ng-src="{{updateMenuItemCtrl.basePath}}/images/{{updateMenuItemCtrl.menuItemInfo.short_name}}.jpg" alt="{{updateMenuItemCtrl.menuItemInfo.short_name}}">
+        </div>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Item Name: </b></span>
+            <input type="text" ng-model="updateMenuItemCtrl.menuItemInfo.name">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Item Short Name: </b></span>
+            <input type="text" ng-model="updateMenuItemCtrl.menuItemInfo.short_name">
+        </label>
+         <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Category Short Name: </b></span>
+            <input type="text" ng-model="updateMenuItemCtrl.menuItemInfo.category_id">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Item price: </b></span>
+            <input type="text" ng-model="updateMenuItemCtrl.menuItemInfo.price_large">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <span class="input-label"><b>Item description: </b></span>
+            <input type="text" ng-model="updateMenuItemCtrl.menuItemInfo.description">
+        </label>
+    </div>
+    <button class="button button-block button-positive" style="margin:0 auto; width:92%;" ng-click="updateMenuItemCtrl.updateMenuItem()">
+        {{updateMenuItemCtrl.type}} Menu Item
+    </button>
+    <div class="bottomNote">
+        <p class="link" ui-sref="adminMenuItem">Back to menu item list</p>
+    </div>
+</ion-content>
