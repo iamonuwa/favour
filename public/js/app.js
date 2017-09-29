@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module('menuApp', ['ionic'])
-        .constant('basePath', 'https://krispy123.herokuapp.com/')
+        .constant('basePath', 'https://krispy123.herokuapp.com')
         // for the outer wrap
         .controller('menuController', menuController)
         // for home page
